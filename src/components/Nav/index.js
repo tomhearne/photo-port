@@ -31,22 +31,26 @@ function Nav(props) {
               <span>Contact</span>
             </li>
             {categories.map((category) => (
-              <li
-                className="mx-1"
-                key={category.name}
+            <li
+              className={`mx-1 ${
+                currentCategory.name === category.name && 'navActive'
+                }`}
+              key={category.name}
+            >
+              <span
+                onClick={() => {
+                  setCurrentCategory(category)
+                }}
               >
-                <span onClick={() => categorySelected(category.name)} >
-                  {category.name}
-                </span>
-              </li>
-            ))}
+                {capitalizeFirstLetter(category.name)}
+              </span>
+            </li>
+          ))}
           </ul>
         </nav>
       </header>
     );
 }
 
-function categorySelected(name){
-    console.log(`${name}`);
-}
+
 export default Nav;
